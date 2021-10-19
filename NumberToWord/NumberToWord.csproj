@@ -6,4 +6,8 @@
     <AssemblyName>Mawa.NumberToWord</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Sources\" />
+  </ItemGroup>
+
 </Project>

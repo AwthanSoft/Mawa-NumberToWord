@@ -41,13 +41,6 @@ namespace NumberToWord.Arabic
         public string Arabic1199CurrencyName { get; private set; }
 
         /// <summary>
-        /// Decimal Part Precision
-        /// for Syrian Pounds: 2 ( 1 SP = 100 parts)
-        /// for Tunisian Dinars: 3 ( 1 TND = 1000 parts)
-        /// </summary>
-        public Byte PartPrecision { get; private set; }
-
-        /// <summary>
         /// Is the currency part name feminine ( Mua'anath مؤنث)
         /// هللة : مؤنث = true
         /// قرش : مذكر = false
