@@ -213,48 +213,57 @@ namespace NumberToWord.Arabic
 
             string retVal = String.Empty;
             Byte group = 0;
-            while (tempNumber >= 1)
+
+            if (tempNumber < 1)
             {
-                // seperate number into groups
-                int numberToProcess = (int)(tempNumber % 1000);
+                //retVal = arabicOnes[0];
+                retVal = "صفر";
+            }
+            else
+            {
+                while (tempNumber >= 1)
+                {
+                    // seperate number into groups
+                    int numberToProcess = (int)(tempNumber % 1000);
 
-                tempNumber = tempNumber / 1000;
+                    tempNumber = tempNumber / 1000;
 
-                // convert group into its text
-                string groupDescription = ProcessArabicGroup(numberToProcess, group, Math.Floor(tempNumber), intergerValue);
+                    // convert group into its text
+                    string groupDescription = ProcessArabicGroup(numberToProcess, group, Math.Floor(tempNumber), intergerValue);
 
-                if (groupDescription != String.Empty)
-                { // here we add the new converted group to the previous concatenated text
-                    if (group > 0)
-                    {
-                        if (retVal != String.Empty)
-                            retVal = String.Format("{0} {1}", "و", retVal);
-
-                        if (numberToProcess != 2)
+                    if (groupDescription != String.Empty)
+                    { // here we add the new converted group to the previous concatenated text
+                        if (group > 0)
                         {
-                            if (numberToProcess % 100 != 1)
+                            if (retVal != String.Empty)
+                                retVal = String.Format("{0} {1}", "و", retVal);
+
+                            if (numberToProcess != 2)
                             {
-                                if (numberToProcess >= 3 && numberToProcess <= 10) // for numbers between 3 and 9 we use plural name
-                                    retVal = String.Format("{0} {1}", arabicPluralGroups[group], retVal);
+                                if (numberToProcess % 100 != 1)
+                                {
+                                    if (numberToProcess >= 3 && numberToProcess <= 10) // for numbers between 3 and 9 we use plural name
+                                        retVal = String.Format("{0} {1}", arabicPluralGroups[group], retVal);
+                                    else
+                                    {
+                                        if (retVal != String.Empty) // use appending case
+                                            retVal = String.Format("{0} {1}", arabicAppendedGroup[group], retVal);
+                                        else
+                                            retVal = String.Format("{0} {1}", arabicGroup[group], retVal); // use normal case
+                                    }
+                                }
                                 else
                                 {
-                                    if (retVal != String.Empty) // use appending case
-                                        retVal = String.Format("{0} {1}", arabicAppendedGroup[group], retVal);
-                                    else
-                                        retVal = String.Format("{0} {1}", arabicGroup[group], retVal); // use normal case
+                                    retVal = String.Format("{0} {1}", arabicGroup[group], retVal); // use normal case
                                 }
                             }
-                            else
-                            {
-                                retVal = String.Format("{0} {1}", arabicGroup[group], retVal); // use normal case
-                            }
                         }
+
+                        retVal = String.Format("{0} {1}", groupDescription, retVal);
                     }
 
-                    retVal = String.Format("{0} {1}", groupDescription, retVal);
+                    group++;
                 }
-
-                group++;
             }
 
             String formattedNumber = String.Empty;
@@ -268,9 +277,9 @@ namespace NumberToWord.Arabic
                     formattedNumber += Currency.Arabic1CurrencyName;
                 else
                     if (remaining100 == 1)
-                    formattedNumber += Currency.Arabic1CurrencyName;
+                        formattedNumber += Currency.Arabic1CurrencyName;
                 else
-                        if (remaining100 == 2)
+                    if (remaining100 == 2)
                 {
                     if (intergerValue == 2)
                         formattedNumber += Currency.Arabic2CurrencyName;
@@ -278,11 +287,16 @@ namespace NumberToWord.Arabic
                         formattedNumber += Currency.Arabic1CurrencyName;
                 }
                 else
-                            if (remaining100 >= 3 && remaining100 <= 10)
-                    formattedNumber += Currency.Arabic310CurrencyName;
+                    if (remaining100 >= 3 && remaining100 <= 10)
+                        formattedNumber += Currency.Arabic310CurrencyName;
                 else
-                                if (remaining100 >= 11 && remaining100 <= 99)
-                    formattedNumber += Currency.Arabic1199CurrencyName;
+                    if (remaining100 >= 11 && remaining100 <= 99)
+                        formattedNumber += Currency.Arabic1199CurrencyName;
+            }
+            //Me
+            else
+            {
+                formattedNumber += string.Format(" {0}", Currency.Arabic1CurrencyName);
             }
             formattedNumber += (decimalValue != 0) ? " و " : String.Empty;
             formattedNumber += (decimalValue != 0) ? decimalString : String.Empty;

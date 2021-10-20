@@ -118,6 +118,7 @@
 
                 <!-- Arabic Side -->
                 <StackPanel
+                    FlowDirection="RightToLeft"
                     Margin="5"
                     Background="WhiteSmoke"
                     Grid.Column="1">
@@ -125,7 +126,7 @@
                         FontSize="16"
                         FontStyle="Italic"
                         FontWeight="SemiBold"
-                        Content="Arabic"
+                        Content="Arabic - عربي"
                         HorizontalAlignment="Center"/>
 
                     <!--Prefix & Suffix-->

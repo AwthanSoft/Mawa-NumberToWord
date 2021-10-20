@@ -12,7 +12,7 @@ namespace NumberToWord.Test.Controls
     class MainTest_InterfaceCtrl : INotifyPropertyChanged
     {
         #region Static
-        public enum Currency{ Syria = 0, UAE, SaudiArabia, Tunisia, Gold, Yemen };
+        public enum Currency{ Syria = 0, UAE, SaudiArabia, Tunisia, Gold, Yemen, General };
         public class CurrencyInfo
         {
             #region Constructors
@@ -21,11 +21,33 @@ namespace NumberToWord.Test.Controls
             {
                 switch (currency)
                 {
+                    case Currency.General:
+                        {
+                            CurrencyID = 6;
+                            CurrencyCode = "";
+                            IsCurrencyNameFeminine = false;
+                            EnglishCurrencyName = "";
+                            EnglishPluralCurrencyName = "";
+                            EnglishCurrencyPartName = "";
+                            EnglishPluralCurrencyPartName = "";
+                            Arabic1CurrencyName = "";
+                            Arabic2CurrencyName = "";
+                            Arabic310CurrencyName = "";
+                            Arabic1199CurrencyName = "";
+                            Arabic1CurrencyPartName = "";
+                            Arabic2CurrencyPartName = "";
+                            Arabic310CurrencyPartName = "";
+                            Arabic1199CurrencyPartName = "";
+                            PartPrecision = 3;
+                            IsCurrencyPartNameFeminine = false;
+                            break;
+                        }
+
                     case Currency.Yemen:
                         {
                             CurrencyID = 5;
                             CurrencyCode = "YER";
-                            IsCurrencyNameFeminine = true;
+                            IsCurrencyNameFeminine = false;
                             EnglishCurrencyName = "Yemeni Rial";
                             EnglishPluralCurrencyName = "Yemeni Rials";
                             EnglishCurrencyPartName = "Fils";
@@ -38,7 +60,7 @@ namespace NumberToWord.Test.Controls
                             Arabic2CurrencyPartName = "فلسان";
                             Arabic310CurrencyPartName = "فلس";
                             Arabic1199CurrencyPartName = "فلساً";
-                            PartPrecision = 2;
+                            PartPrecision = 3;
                             IsCurrencyPartNameFeminine = false;
                             break;
                         }
@@ -292,13 +314,13 @@ namespace NumberToWord.Test.Controls
         #region Currencies
 
         Currency[] _Currencies = new Currency[] {
-        Currency.Yemen,
-        Currency.Syria,
-        Currency.UAE,
-        Currency.SaudiArabia,
-        Currency.Tunisia,
-        Currency.Gold
-        };
+            Currency.General,
+            Currency.Yemen,
+            Currency.Syria,
+            Currency.UAE,
+            Currency.SaudiArabia,
+            Currency.Tunisia,
+            Currency.Gold};
         public Currency[] Currencies => _Currencies;
 
         Currency _SelectedCurrency;

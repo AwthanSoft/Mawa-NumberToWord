@@ -132,7 +132,7 @@ namespace NumberToWord.English
 
             if (tempNumber < 1)
             {
-                retVal = englishOnes[0];
+                retVal = string.Format("{0} ", englishOnes[0]);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace NumberToWord.English
             String formattedNumber = String.Empty;
             formattedNumber += (ConvertorSettings_English.EnglishPrefixText != String.Empty) ? String.Format("{0} ", ConvertorSettings_English.EnglishPrefixText) : String.Empty;
             formattedNumber += (retVal != String.Empty) ? retVal : String.Empty;
-            formattedNumber += (retVal != String.Empty) ? (intergerValue == 1 ? Currency.EnglishCurrencyName : Currency.EnglishPluralCurrencyName) : String.Empty;
+            formattedNumber += (retVal != String.Empty) ? ((intergerValue == 1 || intergerValue == 0) ? Currency.EnglishCurrencyName : Currency.EnglishPluralCurrencyName) : String.Empty;
             formattedNumber += (decimalString != String.Empty) ? " and " : String.Empty;
             formattedNumber += (decimalString != String.Empty) ? decimalString : String.Empty;
             formattedNumber += (decimalString != String.Empty) ? " " + (decimalValue == 1 ? Currency.EnglishCurrencyPartName : Currency.EnglishPluralCurrencyPartName) : String.Empty;
