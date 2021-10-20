@@ -12,7 +12,7 @@ namespace NumberToWord.Test.Controls
     class MainTest_InterfaceCtrl : INotifyPropertyChanged
     {
         #region Static
-        public enum Currency{ Syria = 0, UAE, SaudiArabia, Tunisia, Gold, Yemen, General };
+        public enum Currency{ Syria = 0, UAE, SaudiArabia, Tunisia, Gold, Yemen, General, Point };
         public class CurrencyInfo
         {
             #region Constructors
@@ -315,6 +315,9 @@ namespace NumberToWord.Test.Controls
 
         Currency[] _Currencies = new Currency[] {
             Currency.General,
+            Currency.Point,
+
+
             Currency.Yemen,
             Currency.Syria,
             Currency.UAE,
@@ -456,7 +459,22 @@ namespace NumberToWord.Test.Controls
                 //English
                 try
                 {
-                    _EnglishConvertedResult = EnglishConvertors_dic[SelectedCurrency].ConvertToWord(Convert.ToDecimal(Number));
+                    switch (SelectedCurrency)
+                    {
+                        case Currency.Point:
+                            {
+                                _EnglishConvertedResult = ConvertorManager.ConvertToWord_English_Point(
+                                    Convert.ToDecimal(Number),
+                                    ConvertorSettings_English.EnglishPrefixText,
+                                    ConvertorSettings_English.EnglishSuffixText);
+                                break;
+                            }
+                        default:
+                            {
+                                _EnglishConvertedResult = EnglishConvertors_dic[SelectedCurrency].ConvertToWord(Convert.ToDecimal(Number));
+                                break;
+                            }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -511,7 +529,22 @@ namespace NumberToWord.Test.Controls
                 //Arabic
                 try
                 {
-                    _ArabicConvertedResult = ArabicConvertors_dic[SelectedCurrency].ConvertToWord(Convert.ToDecimal(Number));
+                    switch (SelectedCurrency)
+                    {
+                        case Currency.Point:
+                            {
+                                _ArabicConvertedResult = ConvertorManager.ConvertToWord_Arabic_Point(
+                                    Convert.ToDecimal(Number),
+                                    ConvertorSettings_Arabic.ArabicPrefixText,
+                                    ConvertorSettings_Arabic.ArabicSuffixText);
+                                break;
+                            }
+                        default:
+                            {
+                                _ArabicConvertedResult = ArabicConvertors_dic[SelectedCurrency].ConvertToWord(Convert.ToDecimal(Number));
+                                break;
+                            }
+                    }
                 }
                 catch (Exception ex)
                 {

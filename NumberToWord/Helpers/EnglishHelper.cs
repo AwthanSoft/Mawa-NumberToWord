@@ -1,53 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-using CurrencyInfo = NumberToWord.English.EnglishCurrencyInfo;
-
-namespace NumberToWord.English
+namespace NumberToWord.Helpers
 {
-    class ConvertorToWord_English : ConvertorToWordCore
+    static class EnglishHelper
     {
-        /// Group Levels: 987,654,321.234
-        /// 234 : Group Level -1
-        /// 321 : Group Level 0
-        /// 654 : Group Level 1
-        /// 987 : Group Level 2
-
-        #region Varaibles & Properties
-
-        /// <summary>
-        /// Currency to use
-        /// </summary>
-        public CurrencyInfo Currency => (CurrencyInfo)base.CurrencyInfo;
-
-        #endregion
-
-        #region General
-
-        /// <summary>
-        /// Constructor: short version
-        /// </summary>
-        /// <param name="currency">Currency to use</param>
-        public ConvertorToWord_English(CurrencyInfo currency) : base(currency)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Number">Number to be converted</param>
-        /// <returns></returns>
-        public override string ConvertToWord(Decimal Number)
-        {
-            ExtractIntegerAndDecimalParts(Number, out long intergerValue, out int decimalValue);
-            return ConvertToEnglish(Number, intergerValue, decimalValue);
-        }
-
-        #endregion
-
-
-        #region English Number To Word
-
         #region Varaibles
 
         private static string[] englishOnes =
@@ -72,12 +30,38 @@ namespace NumberToWord.English
 
         #endregion
 
+        #region Convertor
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Number">Number to be converted</param>
+        /// <returns></returns>
+        public static string ConvertToWord_Point(
+            Decimal Number,
+            Byte PartPrecision,
+            string PointStr,
+            string EnglishPrefixText,
+            string EnglishSuffixText)
+        {
+            CoreHelper.ExtractIntegerAndDecimalParts(Number, PartPrecision, out long intergerValue, out int decimalValue);
+
+            var NumStr = ConvertToEnglish_Point(Number, intergerValue, decimalValue, PointStr);
+
+            String formattedNumber = String.Empty;
+            formattedNumber += (EnglishPrefixText != String.Empty) ? String.Format("{0} ", EnglishPrefixText) : String.Empty;
+            formattedNumber += NumStr;
+            formattedNumber += (EnglishSuffixText != String.Empty) ? String.Format(" {0}", EnglishSuffixText) : String.Empty;
+
+            return formattedNumber;
+        }
+
         /// <summary>
         /// Process a group of 3 digits
         /// </summary>
         /// <param name="groupNumber">The group number to process</param>
         /// <returns></returns>
-        private string ProcessGroup(int groupNumber)
+        private static string ProcessGroup(int groupNumber)
         {
             int tens = groupNumber % 100;
 
@@ -117,7 +101,11 @@ namespace NumberToWord.English
         /// Convert stored number to words using selected currency
         /// </summary>
         /// <returns></returns>
-        public string ConvertToEnglish(Decimal Number, long intergerValue, int decimalValue)
+        private static string ConvertToEnglish_Point(
+            Decimal Number, 
+            long intergerValue, 
+            int decimalValue,
+            string PointStr)
         {
             Decimal tempNumber = Number;
 
@@ -132,7 +120,7 @@ namespace NumberToWord.English
 
             if (tempNumber < 1)
             {
-                retVal = string.Format("{0} ", englishOnes[0]);
+                retVal = englishOnes[0];
             }
             else
             {
@@ -163,18 +151,14 @@ namespace NumberToWord.English
             }
 
             String formattedNumber = String.Empty;
-            formattedNumber += (ConvertorSettings_English.EnglishPrefixText != String.Empty) ? String.Format("{0} ", ConvertorSettings_English.EnglishPrefixText) : String.Empty;
-            formattedNumber += (retVal != String.Empty) ? string.Format("{0} ", retVal) : String.Empty;
-            formattedNumber += (retVal != String.Empty) ? ((intergerValue == 1 || intergerValue == 0) ? Currency.EnglishCurrencyName : Currency.EnglishPluralCurrencyName) : String.Empty;
-            formattedNumber += (decimalString != String.Empty) ? " and " : String.Empty;
+            formattedNumber += (retVal != String.Empty) ? retVal : String.Empty;
+            formattedNumber += (decimalString != String.Empty) ? string.Format(" {0} ", PointStr) : String.Empty;
             formattedNumber += (decimalString != String.Empty) ? decimalString : String.Empty;
-            formattedNumber += (decimalString != String.Empty) ? " " + (decimalValue == 1 ? Currency.EnglishCurrencyPartName : Currency.EnglishPluralCurrencyPartName) : String.Empty;
-            formattedNumber += (ConvertorSettings_English.EnglishSuffixText != String.Empty) ? String.Format(" {0}", ConvertorSettings_English.EnglishSuffixText) : String.Empty;
 
             return formattedNumber;
         }
 
+
         #endregion
-        
     }
 }

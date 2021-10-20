@@ -83,5 +83,34 @@ namespace NumberToWord
                 Arabic1199CurrencyPartName
             ));
         }
+
+   
+        public static string ConvertToWord_English_Point(
+            Decimal Number,
+            string EnglishPrefixText,
+            string EnglishSuffixText,
+            Byte PartPrecision = 2,
+            string PointStr = "POINT")
+        {
+            return Helpers.EnglishHelper.ConvertToWord_Point(
+                Number,
+                PartPrecision,
+                PointStr,
+                EnglishPrefixText, EnglishSuffixText);
+        }
+
+        public static string ConvertToWord_Arabic_Point(
+            Decimal Number,
+            string EnglishPrefixText,
+            string EnglishSuffixText,
+            Byte PartPrecision = 2,
+            string PointStr = "فاصلة")
+        {
+            return Helpers.ArabicHelper.ConvertToWord_Point(
+                Number,
+                PartPrecision,
+                PointStr,
+                EnglishPrefixText, EnglishSuffixText);
+        }
     }
 }
