@@ -41,7 +41,8 @@ namespace NumberToWord
             Language language,
             string CurrencyId,
             string CurrencyName,
-            string CurrencyCode
+            string CurrencyCode,
+            Byte PartPrecision
             )
         {
             this._language = language;
@@ -49,6 +50,7 @@ namespace NumberToWord
             this.CurrencyId = CurrencyId;
             this.CurrencyName = CurrencyName;
             this.CurrencyCode = CurrencyCode;
+            this.PartPrecision = PartPrecision;
         }
 
     }

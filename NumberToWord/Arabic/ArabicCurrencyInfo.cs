@@ -80,11 +80,13 @@ namespace NumberToWord.Arabic
         public ArabicCurrencyInfo(
             string CurrencyId,
             string CurrencyName,
-            string CurrencyCode
+            string CurrencyCode,
+            Byte PartPrecision
             ) : base(Language.Arabic,
             CurrencyId,
             CurrencyName,
-            CurrencyCode)
+            CurrencyCode,
+            PartPrecision)
         {
 
         }

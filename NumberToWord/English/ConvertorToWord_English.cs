@@ -38,7 +38,7 @@ namespace NumberToWord.English
         /// </summary>
         /// <param name="Number">Number to be converted</param>
         /// <returns></returns>
-        public string ConvertToWord(Decimal Number)
+        public override string ConvertToWord(Decimal Number)
         {
             ExtractIntegerAndDecimalParts(Number, out long intergerValue, out int decimalValue);
             return ConvertToEnglish(Number, intergerValue, decimalValue);

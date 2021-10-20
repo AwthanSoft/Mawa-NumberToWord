@@ -36,13 +36,24 @@ namespace NumberToWord.English
         public EnglishCurrencyInfo(
             string CurrencyId,
             string CurrencyName,
-            string CurrencyCode
+            string CurrencyCode,
+            Byte PartPrecision,
+
+            string EnglishCurrencyName,
+            string EnglishPluralCurrencyName,
+            string EnglishCurrencyPartName,
+            string EnglishPluralCurrencyPartName
+
             ) : base(Language.English,
             CurrencyId,
             CurrencyName,
-            CurrencyCode)
+            CurrencyCode,
+            PartPrecision)
         {
-
+            this.EnglishCurrencyName = EnglishCurrencyName;
+            this.EnglishPluralCurrencyName = EnglishPluralCurrencyName;
+            this.EnglishCurrencyPartName = EnglishCurrencyPartName;
+            this.EnglishPluralCurrencyPartName = EnglishPluralCurrencyPartName;
         }
     }
 }

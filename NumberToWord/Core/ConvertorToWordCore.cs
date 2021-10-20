@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NumberToWord
 {
-    abstract class ConvertorToWordCore
+    abstract class ConvertorToWordCore : IConvertorToWordCore
     {
         /// Group Levels: 987,654,321.234
         /// 234 : Group Level -1
@@ -17,7 +17,7 @@ namespace NumberToWord
         public Language language => CurrencyInfo.language;
         public ConvertorToWordCore(CurrencyInfoCore CurrencyInfo)
         {
-
+            this.CurrencyInfo = CurrencyInfo;
         }
 
         #region General
@@ -75,6 +75,7 @@ namespace NumberToWord
                 decimalValue = 0;
         }
 
+        public abstract string ConvertToWord(Decimal Number);
         #endregion
 
 
