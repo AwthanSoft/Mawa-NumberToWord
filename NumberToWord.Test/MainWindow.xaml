@@ -108,13 +108,74 @@
                     </StackPanel>
 
                     <TextBlock
+                        TextWrapping="Wrap"
                         Text="{Binding EnglishConvertedResult}"
                         Margin="5"
                         MinHeight="150"
                         Background="White"/>
 
                 </StackPanel>
-                
+
+                <!-- Arabic Side -->
+                <StackPanel
+                    Margin="5"
+                    Background="WhiteSmoke"
+                    Grid.Column="1">
+                    <Label
+                        FontSize="16"
+                        FontStyle="Italic"
+                        FontWeight="SemiBold"
+                        Content="Arabic"
+                        HorizontalAlignment="Center"/>
+
+                    <!--Prefix & Suffix-->
+                    <StackPanel>
+                        <!--Prefix-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Content="ArabicPrefix : "/>
+                            <TextBox
+                                Text="{Binding ArabicPrefix}"
+                                TextChanged="ArabicPrefix_TextBox_TextChanged"
+                                Margin="5"
+                                Background="White"
+                                Grid.Column="1"
+                                />
+                        </Grid>
+
+                        <!--Suffix-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Content="ArabicSuffix : "/>
+                            <TextBox
+                                Text="{Binding ArabicSuffix}"
+                                TextChanged="ArabicSuffix_TextBox_TextChanged"
+                                Margin="5"
+                                Background="White"
+                                Grid.Column="1"
+                                />
+                        </Grid>
+                    </StackPanel>
+
+                    <TextBlock
+                        TextWrapping="Wrap"
+                        Text="{Binding ArabicConvertedResult}"
+                        Margin="5"
+                        MinHeight="150"
+                        Background="White"/>
+
+                </StackPanel>
+
             </Grid>
         </Border>
         

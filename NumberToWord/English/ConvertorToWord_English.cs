@@ -32,7 +32,6 @@ namespace NumberToWord.English
 
         }
 
-        #endregion
         /// <summary>
         /// 
         /// </summary>
@@ -43,6 +42,9 @@ namespace NumberToWord.English
             ExtractIntegerAndDecimalParts(Number, out long intergerValue, out int decimalValue);
             return ConvertToEnglish(Number, intergerValue, decimalValue);
         }
+
+        #endregion
+
 
         #region English Number To Word
 

@@ -41,5 +41,14 @@ namespace NumberToWord.Test
         {
             InterfaceCtrl.EnglishSuffix = (sender as TextBox).Text;
         }
+
+        private void ArabicPrefix_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InterfaceCtrl.ArabicPrefix = (sender as TextBox).Text;
+        }
+        private void ArabicSuffix_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InterfaceCtrl.ArabicSuffix = (sender as TextBox).Text;
+        }
     }
 }

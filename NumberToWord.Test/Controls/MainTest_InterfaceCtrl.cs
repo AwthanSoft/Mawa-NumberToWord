@@ -1,4 +1,5 @@
-﻿using NumberToWord.English;
+﻿using NumberToWord.Arabic;
+using NumberToWord.English;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -283,6 +284,7 @@ namespace NumberToWord.Test.Controls
             pre_initial_ConvertorsCtrl();
             
             pre_initial_EnglishCtrl();
+            pre_initial_ArabicCtrl();
 
         }
         #endregion
@@ -322,6 +324,7 @@ namespace NumberToWord.Test.Controls
         #region ConvertorsCtrl
 
         Dictionary<Currency, IConvertorToWordCore> EnglishConvertors_dic;
+        Dictionary<Currency, IConvertorToWordCore> ArabicConvertors_dic;
         void pre_initial_ConvertorsCtrl()
         {
             EnglishConvertors_dic = new Dictionary<Currency, IConvertorToWordCore>();
@@ -340,6 +343,30 @@ namespace NumberToWord.Test.Controls
 
                     currencyInfo.PartPrecision));
             }
+
+            ArabicConvertors_dic = new Dictionary<Currency, IConvertorToWordCore>();
+            foreach (var currency in Currencies)
+            {
+                var currencyInfo = new CurrencyInfo(currency);
+                ArabicConvertors_dic.Add(currency, ConvertorManager.GetConvertorArabic(
+                    currencyInfo.CurrencyID.ToString(),
+                    currencyInfo.EnglishCurrencyName,
+                    currencyInfo.CurrencyCode,
+
+                    currencyInfo.IsCurrencyNameFeminine,
+                    currencyInfo.Arabic1CurrencyName,
+                    currencyInfo.Arabic2CurrencyName,
+                    currencyInfo.Arabic310CurrencyName,
+                    currencyInfo.Arabic1199CurrencyName,
+                    currencyInfo.IsCurrencyPartNameFeminine,
+                    currencyInfo.Arabic1CurrencyPartName,
+                    currencyInfo.Arabic2CurrencyPartName,
+                    currencyInfo.Arabic310CurrencyPartName,
+                    currencyInfo.Arabic1199CurrencyPartName,
+
+                    currencyInfo.PartPrecision));
+            }
+
         }
 
         #endregion
@@ -430,6 +457,61 @@ namespace NumberToWord.Test.Controls
 
         #endregion
 
+        #region ArabicCtrl
+
+        public string ArabicPrefix
+        {
+            get => ConvertorSettings_Arabic.ArabicPrefixText;
+            set
+            {
+                ConvertorSettings_Arabic.SetArabicPrefixText(value);
+                //OnPropertyChanged(nameof(ArabicPrefix));
+                NotifyAllPropertiesChanged();
+            }
+        }
+        public string ArabicSuffix
+        {
+            get => ConvertorSettings_Arabic.ArabicSuffixText;
+            set
+            {
+                ConvertorSettings_Arabic.SetArabicSuffixText(value);
+                //OnPropertyChanged(nameof(ArabicSuffix));
+                NotifyAllPropertiesChanged();
+            }
+        }
+
+        //
+        string _ArabicConvertedResult;
+        public string ArabicConvertedResult
+        {
+            get
+            {
+                //Arabic
+                try
+                {
+                    _ArabicConvertedResult = ArabicConvertors_dic[SelectedCurrency].ConvertToWord(Convert.ToDecimal(Number));
+                }
+                catch (Exception ex)
+                {
+                    _ArabicConvertedResult = ex.Message;
+                }
+                return _ArabicConvertedResult;
+            }
+            private set
+            {
+                _ArabicConvertedResult = value;
+                //OnPropertyChanged(nameof(ArabicConvertedResult));
+                //NotifyAllPropertiesChanged();
+            }
+        }
+
+        void pre_initial_ArabicCtrl()
+        {
+
+        }
+
+        #endregion
+
         #region Notify
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -450,7 +532,10 @@ namespace NumberToWord.Test.Controls
             OnPropertyChanged(nameof(EnglishSuffix));
             OnPropertyChanged(nameof(EnglishConvertedResult));
 
-
+            //ArabicCtrl
+            OnPropertyChanged(nameof(ArabicPrefix));
+            OnPropertyChanged(nameof(ArabicSuffix));
+            OnPropertyChanged(nameof(ArabicConvertedResult));
         }
         #endregion
     }

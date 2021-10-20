@@ -81,14 +81,35 @@ namespace NumberToWord.Arabic
             string CurrencyId,
             string CurrencyName,
             string CurrencyCode,
-            Byte PartPrecision
+            Byte PartPrecision,
+
+            Boolean IsCurrencyNameFeminine,
+            string Arabic1CurrencyName,
+            string Arabic2CurrencyName,
+            string Arabic310CurrencyName,
+            string Arabic1199CurrencyName,
+            Boolean IsCurrencyPartNameFeminine,
+            string Arabic1CurrencyPartName,
+            string Arabic2CurrencyPartName,
+            string Arabic310CurrencyPartName,
+            string Arabic1199CurrencyPartName
+
             ) : base(Language.Arabic,
             CurrencyId,
             CurrencyName,
             CurrencyCode,
             PartPrecision)
         {
-
+            this.IsCurrencyNameFeminine = IsCurrencyNameFeminine;
+            this.Arabic1CurrencyName = Arabic1CurrencyName;
+            this.Arabic2CurrencyName = Arabic2CurrencyName;
+            this.Arabic310CurrencyName = Arabic310CurrencyName;
+            this.Arabic1199CurrencyName = Arabic1199CurrencyName;
+            this.IsCurrencyPartNameFeminine = IsCurrencyPartNameFeminine;
+            this.Arabic1CurrencyPartName = Arabic1CurrencyPartName;
+            this.Arabic2CurrencyPartName = Arabic2CurrencyPartName;
+            this.Arabic310CurrencyPartName = Arabic310CurrencyPartName;
+            this.Arabic1199CurrencyPartName = Arabic1199CurrencyPartName;
         }
     }
 }
