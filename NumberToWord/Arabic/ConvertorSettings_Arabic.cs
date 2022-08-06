@@ -8,7 +8,8 @@ namespace NumberToWord.Arabic
     {
         //
         //static String _ArabicPrefixText = string.Empty;
-        static String _ArabicPrefixText = "فقط";
+        //static String _ArabicPrefixText = "فقط";
+        static String _ArabicPrefixText = "#";
         /// <summary>
         /// Arabic text to be placed before the generated text
         /// </summary>
@@ -21,7 +22,8 @@ namespace NumberToWord.Arabic
 
         //
         //static String _ArabicSuffixText = string.Empty;
-        static String _ArabicSuffixText = "لا غير.";
+        //static String _ArabicSuffixText = "لا غير.";
+        static String _ArabicSuffixText = "#";
         /// <summary>
         /// Arabic text to be placed after the generated text
         /// </summary>

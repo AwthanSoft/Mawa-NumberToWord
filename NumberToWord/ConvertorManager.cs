@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NumberToWord
 {
-    public static class ConvertorManager
+    public static class NumberToWordConvertorApi
     {
         /// <summary>
         /// get control to process number
@@ -43,8 +43,6 @@ namespace NumberToWord
                 EnglishCurrencyPartName,
                 EnglishPluralCurrencyPartName));
         }
-
-
 
 
         public static IConvertorToWordCore GetConvertorArabic(

@@ -7,7 +7,8 @@ namespace NumberToWord.English
     public static class ConvertorSettings_English
     {
         //
-        static String _EnglishPrefixText = string.Empty;
+        //static String _EnglishPrefixText = string.Empty;
+        static String _EnglishPrefixText = "#";
         /// <summary>
         /// English text to be placed before the generated text
         /// </summary>
@@ -20,7 +21,8 @@ namespace NumberToWord.English
 
         //
         //static String _EnglishSuffixText = string.Empty;
-        static String _EnglishSuffixText = "only";
+        //static String _EnglishSuffixText = "only";
+        static String _EnglishSuffixText = "#";
         /// <summary>
         /// English text to be placed after the generated text
         /// </summary>

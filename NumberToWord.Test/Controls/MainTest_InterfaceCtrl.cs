@@ -356,7 +356,7 @@ namespace NumberToWord.Test.Controls
             foreach (var currency in Currencies)
             {
                 var currencyInfo = new CurrencyInfo(currency);
-                EnglishConvertors_dic.Add(currency, ConvertorManager.GetConvertorEnglish(
+                EnglishConvertors_dic.Add(currency, NumberToWordConvertorApi.GetConvertorEnglish(
                     currencyInfo.CurrencyID.ToString(),
                     currencyInfo.EnglishCurrencyName,
                     currencyInfo.CurrencyCode,
@@ -373,7 +373,7 @@ namespace NumberToWord.Test.Controls
             foreach (var currency in Currencies)
             {
                 var currencyInfo = new CurrencyInfo(currency);
-                ArabicConvertors_dic.Add(currency, ConvertorManager.GetConvertorArabic(
+                ArabicConvertors_dic.Add(currency, NumberToWordConvertorApi.GetConvertorArabic(
                     currencyInfo.CurrencyID.ToString(),
                     currencyInfo.EnglishCurrencyName,
                     currencyInfo.CurrencyCode,
@@ -463,7 +463,7 @@ namespace NumberToWord.Test.Controls
                     {
                         case Currency.Point:
                             {
-                                _EnglishConvertedResult = ConvertorManager.ConvertToWord_English_Point(
+                                _EnglishConvertedResult = NumberToWordConvertorApi.ConvertToWord_English_Point(
                                     Convert.ToDecimal(Number),
                                     ConvertorSettings_English.EnglishPrefixText,
                                     ConvertorSettings_English.EnglishSuffixText);
@@ -533,7 +533,7 @@ namespace NumberToWord.Test.Controls
                     {
                         case Currency.Point:
                             {
-                                _ArabicConvertedResult = ConvertorManager.ConvertToWord_Arabic_Point(
+                                _ArabicConvertedResult = NumberToWordConvertorApi.ConvertToWord_Arabic_Point(
                                     Convert.ToDecimal(Number),
                                     ConvertorSettings_Arabic.ArabicPrefixText,
                                     ConvertorSettings_Arabic.ArabicSuffixText);
