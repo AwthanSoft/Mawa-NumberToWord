@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>NumberToWord</RootNamespace>
     <AssemblyName>Mawa.NumberToWord</AssemblyName>
+    <Version>22.9.7</Version>
+    <Authors>AwthanSoft</Authors>
+    <Product>Mawa Number to Words</Product>
+    <Copyright>© 2021-2022 AwthanSoft</Copyright>
+    <RepositoryUrl>https://github.com/AwthanSoft/Mawa-NumberToWord</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
